@@ -1,0 +1,23 @@
+::|| RoboSapiens V3.0.0
+::|| Written by bugos//18-4-2012
+::|| Let's you play for free in the local netcafe
+::|| %1: set the time to hh:mm
+::|| %2: if set to k, just kill the bar
+::|| 010.exe is process.exe from http://retired.beyondlogic.org/solutions/processutil/processutil.htm
+::|| -k to kill, -s to suspend, -r to resume
+::|| 020.exe is PsExec from http://technet.microsoft.com/en-us/sysinternals/bb897553
+
+===Includes
+=Command Line Process Viewer/Killer/Suspender for Windows NT/2000/XP 
+filename: 010.exe
+versionL 2.03
+original filename: process.exe
+url: http://retired.beyondlogic.org/solutions/processutil/processutil.htm
+
+=PsExec
+http://technet.microsoft.com/en-us/sysinternals/bb897553
+
+also used 
+reg.exe ADD HKU\.DEFAULT\Software\Sysinternals\PSexec /v EulaAccepted /t REG_DWORD /d 1 /f
+
+http://forum.sysinternals.com/tip-run-process-in-system-account-scexe_topic16714_page1.html
