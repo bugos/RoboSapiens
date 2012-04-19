@@ -3,21 +3,46 @@
 ::|| Let's you play for free in the local netcafe
 ::|| %1: set the time to hh:mm
 ::|| %2: if set to k, just kill the bar
-::|| 010.exe is process.exe from http://retired.beyondlogic.org/solutions/processutil/processutil.htm
-::|| -k to kill, -s to suspend, -r to resume
-::|| 020.exe is PsExec from http://technet.microsoft.com/en-us/sysinternals/bb897553
 
-===Includes
-=Command Line Process Viewer/Killer/Suspender for Windows NT/2000/XP 
-filename: 010.exe
-versionL 2.03
-original filename: process.exe
-url: http://retired.beyondlogic.org/solutions/processutil/processutil.htm
 
-=PsExec
+Includes/Uses
+=============
+===(010.exe) Command Line Process Viewer/Killer/Suspender for Windows NT/2000/XP
+http://retired.beyondlogic.org/solutions/processutil/processutil.htm
+Version: 2.03
+Original Filename: process.exe
+Used to kill, suspend and resume processes.
+
+Kill:
+C:\>process -k iexplore.exe
+Suspend:
+C:\>process -s winword.exe
+Resume:
+C:\>process -r winword.exe
+
+
+===(020.exe) PsExec
 http://technet.microsoft.com/en-us/sysinternals/bb897553
+Version: 1.98
+Original Filename: PsExec.exe
+Used to grant system privilages.
+-s	Run remote process in the System account.
+-i	Run the program so that it interacts with the desktop of the specified session on the remote system.
+-d	Don't wait for application to terminate. Only use this option for non-interactive applications.
 
-also used 
-reg.exe ADD HKU\.DEFAULT\Software\Sysinternals\PSexec /v EulaAccepted /t REG_DWORD /d 1 /f
+Run Regedit interactively in the System account to view the contents of the SAM and SECURITY keys:
+psexec -i -d -s c:\windows\regedit.exe
 
+
+=== Tip: Run process in system account (sc.exe) 
 http://forum.sysinternals.com/tip-run-process-in-system-account-scexe_topic16714_page1.html
+Used in previous versions to grant system privilages. It was replaced by PsExec
+
+
+=== Work around Sysinternals license pop-ups
+http://peter.hahndorf.eu/blog/2010/03/07/WorkAroundSysinternalsLicensePopups.aspx
+PsExec pops up a windows and asks you to agree with its licence. I don't like that.
+
+reg.exe ADD "HKCU\Software\Sysinternals\PsExec" /v EulaAccepted /t REG_DWORD
+
+
