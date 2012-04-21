@@ -7,7 +7,8 @@
 
 Includes/Uses
 =============
-===(010.exe) Command Line Process Viewer/Killer/Suspender for Windows NT/2000/XP
+~~>(010.exe) Command Line Process Viewer/Killer/Suspender for Windows NT/2000/XP
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 http://retired.beyondlogic.org/solutions/processutil/processutil.htm
 Version: 2.03
 Original Filename: process.exe
@@ -21,7 +22,8 @@ Resume:
 C:\>process -r winword.exe
 
 
-===(020.exe) PsExec
+(020.exe) PsExec
+~~~~~~~~~~~~~~~~
 http://technet.microsoft.com/en-us/sysinternals/bb897553
 Version: 1.98
 Original Filename: PsExec.exe
@@ -34,12 +36,14 @@ Run Regedit interactively in the System account to view the contents of the SAM 
 psexec -i -d -s c:\windows\regedit.exe
 
 
-=== Tip: Run process in system account (sc.exe) 
+Tip: Run process in system account (sc.exe)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 http://forum.sysinternals.com/tip-run-process-in-system-account-scexe_topic16714_page1.html
 Used in previous versions to grant system privilages. It was replaced by PsExec
 
 
-=== Work around Sysinternals license pop-ups
+~~> Work around Sysinternals license pop-ups
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 http://peter.hahndorf.eu/blog/2010/03/07/WorkAroundSysinternalsLicensePopups.aspx
 PsExec pops up a windows and asks you to agree with its licence. I don't like that.
 

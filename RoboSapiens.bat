@@ -10,22 +10,26 @@
 reg.exe ADD "HKCU\Software\Sysinternals\PsExec" /v EulaAccepted /t REG_DWORD /d 1 /f
 
 :start
-:://Take input from args or cin
+:://Take input from args if they exist, else from cin
 IF "%1"=="" (
 	echo hey man! gimme numbers
-	set /p t=
+	set /p time=
 ) ELSE (
-	set t=%1
+	set time=%1
 )
 
-:://Input checking ::(Minor bug with multiple errors)
+:://Additional options
+IF "%time%"=="s" (start 020 cmd && goto start)
+
+:://Input checking ::(Minor bug with multiple errors, displays last one only)
 set "error="
-IF not "%t:~2,1%"==":" (set error=invalid format?)
-IF not "%t:~5,1%"==""  (set error=more than 4 chars)
-IF     "%t:~4,1%"=="" (set error=less than 4 chars) 
+IF not "%time:~2,1%"==":" (set error=colon(:) missing)
+IF not "%time:~5,1%"==""  (set error=more than 5 chars)
+IF     "%time:~4,1%"==""  (set error=less than 5 chars) 
+IF not "%time:~0,1%"=="0" (set error=hours1 not 0)
 ::TODO: if numbers checking
 IF defined error (
-echo Error! : %error%
+echo Error! : %error%. Try hh:mm
 goto start
 )
 
@@ -45,7 +49,7 @@ IF /i "%2"=="k" (echo I will just kill then) && goto launch_rocket
 :://Edit the time
 echo d:>>1.bat
 echo cd D:\WEBMAIN>>1.bat
-echo echo %t%:00^>WEBMAIN1.CRD>>1.bat
+echo echo %time%:00^>WEBMAIN1.CRD>>1.bat
 
 
 :://Respawn the guards
