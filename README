@@ -1,10 +1,35 @@
 ::|| RoboSapiens V3.0.0
-::|| Written by bugos//18-4-2012
-::|| Let's you play for free in the local netcafe
-::|| %1: set the time to hh:mm
-::|| %2: if set to k, just kill the bar
+::|| Written by bugos - 4/2012
+::|| Let's you play for free in the local netcafe.
 
+**guards= The programs that lock the pc
 
+How it works
+============
+It generates a file called 1.bat at C:\\. This file contains the code that will 
+kill the guards, change the time and then restart the guards.
+
+How does it kill the guards
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The security consist of 2 processes and one service.
+WEBMAIN1.exe: The main program. We need to kill this in order to change the time.
+svhost2.exe: it restarts the pc if WEBMAIN1.exe is killed.
+svchost3: service - seems to work together with svhost2
+These 3 watch each other. If you close one of them, the pc restarts
+So we suspend the processes, then kill the service.
+After that we can safely kill WEBMAIN1.exe change the time and restart it. 
+
+How does it change the time
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Usage
+=====
+%time%: the timer of the guards is set to this values.
+		if set to k, it kills the guards and exits.
+		if set to s, it opens a system command promt.
+taken from %1 (arg1) or from cin
+
+		
 Includes/Uses
 =============
 (010.exe) Command Line Process Viewer/Killer/Suspender for Windows NT/2000/XP
