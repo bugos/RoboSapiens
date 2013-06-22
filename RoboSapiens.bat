@@ -1,6 +1,6 @@
 ::|| RoboSapiens V3.0.0
 ::|| Written by bugos//18-4-2012
-::|| Let's you play for free in the local netcafe
+::|| Lets you play for free in the local netcafe
 ::|| %time%: the timer of the guards is set to this values.
 ::|| 		 if set to k, it kills the guards and exits.
 ::||         if set to s, it opens a system command promt.
